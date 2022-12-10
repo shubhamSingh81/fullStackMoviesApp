@@ -3,15 +3,15 @@ const MoviesModel = require('../models/movies');
 //Get call -> Here we are sending the page limit category to the client
 const getMovies = async (req, res) => {
     try {
-        let { page, limit, sort = 'name', category='' } = req.query;
+        let { page, limit, sort = 'name', category = '' } = req.query;
         const options = {
             page: page || 1,
             limit: limit || 10,
             sort,
-            select: "", 
+            select: "",
         };
-        const data = await MoviesModel.paginate({category}, options)
-        res.status(200).json({data});
+        const data = await MoviesModel.paginate({ category }, options)
+        res.status(200).json({ data });
     } catch (error) {
         res.status(500).json({ error });
     }

@@ -28,9 +28,9 @@ const Movie = (props) => {
   // Logic for  showing 10 image Per page
   const onScroll = (event) => {
     const { clientWidth, scrollLeft, scrollWidth } = event.target;
-    if(Math.ceil(clientWidth + scrollLeft) >= scrollWidth && page < total/10){
-     getData(page+1);
-     setPage(page+1);
+    if (Math.ceil(clientWidth + scrollLeft) >= scrollWidth && page < total / 10) {
+      getData(page + 1);
+      setPage(page + 1);
     }
   };
 

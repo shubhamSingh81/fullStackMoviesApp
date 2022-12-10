@@ -13,9 +13,9 @@ mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log("connected"))
   .catch((err) => console.log(err))
 
-const routes  = require('./routes/moviesRoutes');
+const routes = require('./routes/moviesRoutes');
 app.use(routes);
 
-app.listen(PORT, ()=>{
-    console.log(`server is connected successfully on ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`server is connected successfully on ${PORT}`);
 })
