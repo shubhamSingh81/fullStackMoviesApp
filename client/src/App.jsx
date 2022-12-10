@@ -12,7 +12,7 @@ const App = () => {
       <Movie id={7} category={'webSeries'} heading={'Web Series'} />
       <Movie id={8} category={'mysteryShows'} heading={'Mystery Shows'} />
       <Movie id={9} category={'adventureMovies'} heading={'Adventure Movies'} />
-      <Movie id={10} category={'hororMovies'} heading={'Horror Movies'} />
+      <Movie id={10} category={'hororMovies'} heading={'Horror Movies'} />  
     </>
   );
 

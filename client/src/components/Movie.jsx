@@ -35,20 +35,26 @@ const Movie = (props) => {
   };
 
   useEffect(() => {
-    getData(page);
+    getData();
   }, [])
 
   return (
     <div>
       <section className='section'>
         <h2>{heading}</h2>
-        <div className='flex hero-slider' onScroll={onScroll} ref={listInnerRef}>
-          {movies.map((movie, idx) =>
-            <div className={`img-container-${id}`} key={idx}>
-              <InView onChange={() => getMoreData(idx)} >
-                <LazyLoadImage src={movie.imageUrl} className={`hero-img-${id}`} effect="blur" />
-              </InView>
-            </div>)}
+        <div className='flex hero-slider hoverClassName' onScroll={onScroll} ref={listInnerRef}>
+          {movies.map((movie, idx) => {
+            return (
+              <a href="#">
+                <div className={`img-container-${id}`} key={idx}>
+                  <InView onChange={() => getMoreData(idx)} >
+                    <LazyLoadImage src={movie.imageUrl} className={`hero-img-${id}`} effect="blur" />
+                  </InView>
+                </div>
+              </a>)
+          }
+          )}
+
         </div>
       </section>
     </div>
