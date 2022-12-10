@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import axios from 'axios';
 import { InView } from "react-intersection-observer";
@@ -6,13 +6,17 @@ import { InView } from "react-intersection-observer";
 const Movie = (props) => {
   const { id, heading, category } = props;
   const [page, setPage] = useState(1)
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
+  const [total, setTotal] = useState(0);
+  const listInnerRef = useRef();
 
-  const getData = async () => {
+  // Calling the Api with the help of axios
+  const getData = async (page) => {
     const { data } = await axios.get(`${import.meta.env.VITE_SERVER_ENDPOINT}/get?category=${category}&page=${page}`)
-    setMovies(prev =>[...prev,...data.data.docs])
+    setMovies(prev => [...prev, ...data.data.docs])
+    setTotal(data.data.total);
   }
-  
+
   const getMoreData = (imageId) => {
     const mod = imageId % 10;
     if ([7, 8, 9].includes(mod)) {
@@ -21,19 +25,26 @@ const Movie = (props) => {
     }
   }
 
+  // Logic for  showing 10 image Per page
+  const onScroll = (event) => {
+    const { clientWidth, scrollLeft, scrollWidth } = event.target;
+    if(Math.ceil(clientWidth + scrollLeft) >= scrollWidth && page < total/10){
+     getData(page+1);
+     setPage(page+1);
+    }
+  };
+
   useEffect(() => {
-    getData();
+    getData(page);
   }, [])
 
   return (
     <div>
       <section className='section'>
         <h2>{heading}</h2>
-        <div className='flex hero-slider'>
-        <button className='btn'>click</button>
+        <div className='flex hero-slider' onScroll={onScroll} ref={listInnerRef}>
           {movies.map((movie, idx) =>
             <div className={`img-container-${id}`} key={idx}>
-              
               <InView onChange={() => getMoreData(idx)} >
                 <LazyLoadImage src={movie.imageUrl} className={`hero-img-${id}`} effect="blur" />
               </InView>
@@ -44,4 +55,4 @@ const Movie = (props) => {
   )
 }
 
-export default Movie
+export default Movie;

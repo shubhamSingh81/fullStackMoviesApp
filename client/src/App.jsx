@@ -4,7 +4,7 @@ const App = () => {
     <>
       <Movie id={0} category={'trending'} heading={'Trending Trailer'} />
       <Movie id={1} category={'heartWarming'} heading={'Heart Warming'} />
-      <Movie id={2} category={'language'} heading={'Watch in your Language'} />
+       <Movie id={2} category={'language'} heading={'Watch in your Language'} />
       <Movie id={3} category={'actionMovies'} heading={'Action Movies'} />
       <Movie id={4} category={'dramaMovies'} heading={'Drama Movies'} />
       <Movie id={5} category={'thrillerMovies'} heading={'Thrillor Movies'} />

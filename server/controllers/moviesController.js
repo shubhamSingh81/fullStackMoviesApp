@@ -1,5 +1,6 @@
 const MoviesModel = require('../models/movies');
 
+//Get call -> Here we are sending the page limit category to the client
 const getMovies = async (req, res) => {
     try {
         let { page, limit, sort = 'name', category='' } = req.query;
@@ -16,6 +17,7 @@ const getMovies = async (req, res) => {
     }
 }
 
+// Post Call -> Here we Are Saving the category name and imageUrl in the database
 const saveMovies = async (req, res) => {
     try {
         const { category, name, imageUrl } = req.body;

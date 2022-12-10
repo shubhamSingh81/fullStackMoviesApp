@@ -55,23 +55,10 @@
 }
 
 body{
-  background-color:grey ;
+  background-color:black ;
   color: white;
 }
 
 .section{
- 
   position: relative;
-
-}
-.btn{
-  position: absolute;
-  right: 0;
-  top: 30px;
-}
-
-.btn-1{
-position: absolute;
-left: 0;
-top: 30px;
 }
